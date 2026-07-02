@@ -8,4 +8,3 @@ class Settings(BaseSettings):
     )
 
     DATABASE_URL: str = Field(init=False)
-   
