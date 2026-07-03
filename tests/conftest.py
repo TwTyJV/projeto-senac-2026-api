@@ -10,6 +10,7 @@ from sqlalchemy.pool import StaticPool
 from viajei_api.app import app
 from viajei_api.database import get_session
 from viajei_api.models import User, table_registry
+from viajei_api.security import get_password_hash
 
 
 @pytest.fixture
@@ -62,9 +63,13 @@ def _mock_db_time(*, model, time=datetime(2026, 1, 1)):
 
 @pytest.fixture
 def user(session):
-    user = User(email="exempl@exempl.com", password="testtest")
+    password = "secret"
+    user = User(
+        email="exempl@exempl.com", password=get_password_hash("password")
+    )
     session.add(user)
     session.commit()
     session.refresh(user)
 
+    user.clean_password = password
     return user

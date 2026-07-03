@@ -68,3 +68,19 @@ def ex_user(client):
         "email": "jao@ex.exxx",
         "id": 1,
     }
+
+
+def test_get_token(client, user):
+    response = client.post(
+        "/auth",
+        data={
+            "username": user.email,
+            "password": user.clean_passwd,
+        },
+    )
+
+    token = response.json()
+
+    assert response.status_code == HTTPStatus.OK
+    assert "access_token" in token
+    assert "token_type" in token

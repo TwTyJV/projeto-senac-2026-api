@@ -11,7 +11,6 @@ class User:
     __tablename__ = "users"
 
     id: Mapped[int] = mapped_column(init=False, primary_key=True)
-
     password: Mapped[str]
     email: Mapped[str] = mapped_column(unique=True)
     created_at: Mapped[datetime] = mapped_column(
