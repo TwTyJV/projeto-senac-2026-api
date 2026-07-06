@@ -65,7 +65,7 @@ def _mock_db_time(*, model, time=datetime(2026, 1, 1)):
 def user(session):
     password = "secret"
     user = User(
-        email="exempl@exempl.com", password=get_password_hash("password")
+        email="exempl@exempl.com", password=get_password_hash(password)
     )
     session.add(user)
     session.commit()

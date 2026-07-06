@@ -75,7 +75,7 @@ def test_get_token(client, user):
         "/auth",
         data={
             "username": user.email,
-            "password": user.clean_passwd,
+            "password": user.clean_password,
         },
     )
 
