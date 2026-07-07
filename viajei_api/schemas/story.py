@@ -1,8 +1,25 @@
-from viajei_api.schemas.user import User
+# from viajei_api.schemas.user import User
+from pydantic import BaseModel, ConfigDict
+
+# class Story:
+# name: str
+# title: str
+# email: str
+# body: str
 
 
-class Story:
-    name: str
+class StorySchemas(BaseModel):
+    author: str
     title: str
-    email = User.email
-    body: str
+    story: str
+
+
+class StoryDB(StorySchemas):
+    id: int
+
+
+class StoryPublic(BaseModel):
+    id: int
+    title: str
+    email: str
+    model_config = ConfigDict(from_attributes=True)
